@@ -35,7 +35,7 @@ public class SearchBookingControl {
         public void actionPerformed(ActionEvent ae) {
             String key = sBookingFrm.getKeySearch();
             list = dao.searchBooking(key);
-            System.out.println(list.size());
+//            System.out.println(list.size());
             list.forEach(
                 (it) -> sBookingFrm.addRow(it.toObjects())
             );

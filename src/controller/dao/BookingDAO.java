@@ -28,14 +28,15 @@ public class BookingDAO extends DAO{
     public ArrayList<Booking> searchBooking(String key){
         ArrayList<Booking> list = new ArrayList<>();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-        String sql = "select bk.id,bk.bookedDate,bk.saleoff,c.name from tblbooking as bk, tblclient as c"
+        String sql = "select bk.id,bk.bookedDate,bk.saleoff,c.name,c.idcard,c.telephone from tblbooking as bk, tblclient as c"
                 + " where c.name like ? and bk.idClient = c.id";
         try{
             PreparedStatement pre = con.prepareStatement(sql);
             pre.setString(1, "%" + key +"%");
             ResultSet rs = pre.executeQuery();
             while(rs.next()){
-                list.add(new Booking(rs.getInt("id"),formatter.parse(rs.getString("bookedDate")),rs.getInt("saleoff"),rs.getString("name")));
+                list.add(new Booking(rs.getInt("id"),formatter.parse(rs.getString("bookedDate")),rs.getInt("saleoff"),rs.getString("name"),
+                rs.getString("idcard"),rs.getString("telephone")));
             }
         }catch(SQLException ex){
             ex.printStackTrace();

@@ -61,7 +61,7 @@ public class SearchBookingFrm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "name", "bookedDate", "saleoff"
+                "id", "name", "bookedDate", "saleoff", "idcard", "telephone"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {

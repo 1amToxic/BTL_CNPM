@@ -22,6 +22,7 @@ public class Booking implements Serializable{
     private User user;
     private int total; //add to database
     private String name;
+    private String idcard,telephone;
     private ArrayList<BookedField> listBookedField;
     public Booking() {
     }
@@ -42,22 +43,21 @@ public class Booking implements Serializable{
         this.id = id;
     }
     
-    @Override
-    public String toString() {
-        return "Booking{" + "bookedDate=" + bookedDate + ", saleoff=" + saleoff + ", name=" + name + '}';
-    }
+   
     
-    public Booking(int id,Date bookedDate, int saleoff,String name) {
+    public Booking(int id,Date bookedDate, int saleoff,String name,String idcard,String telephone) {
         this.id = id;
         this.bookedDate = bookedDate;
         this.saleoff = saleoff;
         this.name = name;
+        this.idcard = idcard;
+        this.telephone = telephone;
     }
     public String changeTypeDate(){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         return formatter.format(bookedDate);
     }
     public Object[] toObjects(){
-        return new Object[]{id,name,changeTypeDate(),saleoff};
+        return new Object[]{id,name,changeTypeDate(),saleoff,idcard,telephone};
     }
 }
