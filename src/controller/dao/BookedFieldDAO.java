@@ -14,77 +14,38 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Booking;
+import model.BookedField;
 
 /**
  *
  * @author lamit
  */
 public class BookedFieldDAO extends DAO{
-
-    public BookedFieldDAO() {
-    }
-    
-    public ArrayList<Booking> searchBooking(String key){
-        ArrayList<Booking> list = new ArrayList<>();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-        String sql = "select id,bookedDate,saleoff,name from tblbooking where name like ?";
+    public ArrayList<BookedField> getListBookedField(int id){
+        ArrayList<BookedField> list = new ArrayList<>();
+        String sql = "select bf.id,bf.startmatch, bf.endmatch,bf.starttime,bf.endtime,f.name as name"
+                + " from tblbookedfield as bf, tblfield as f where bf.idBooking = ? and bf.idField = f.id";
         try{
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+            SimpleDateFormat formatter1 = new SimpleDateFormat("HH:mm:ss");
             PreparedStatement pre = con.prepareStatement(sql);
-            pre.setString(1, "%" + key +"%");
+            pre.setInt(1, id);
             ResultSet rs = pre.executeQuery();
             while(rs.next()){
-                list.add(new Booking(rs.getInt("id"),formatter.parse(rs.getString("bookedDate")),rs.getInt("saleoff"),rs.getString("name")));
+                System.out.println("Tes");
+                list.add(new BookedField(rs.getInt("bf.id"),
+                        rs.getString("bf.startmatch"),
+                        rs.getString("bf.endmatch"),
+                        formatter.parse(rs.getString("bf.starttime")),
+                        formatter.parse(rs.getString("bf.endtime")),
+                        rs.getString("f.name")));
             }
-        }catch(SQLException ex){
             
+        }catch(SQLException e){
+            e.printStackTrace();
         } catch (ParseException ex) {
-            Logger.getLogger(BookedFieldDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return list;
-    }
-    public void updateCheckout(int id,String checkIn, String checkOut, int penalty){
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        
-        System.out.println(sdf.format(date)+"-"+id);
-        //tim kiem bookedfieldsingle phu hop
-        String sql = "select * from tblbookedfieldsingle where idBookedField = ? and playDate = ?";
-        String sql1  = "update tblbookedfieldsingle set checkin = ?, checkout = ?, penalty = ? where id = ?";
-        try{
-            PreparedStatement pre = con.prepareStatement(sql);
-            pre.setInt(1,id);
-            pre.setString(2, sdf.format(date));
-            ResultSet rs = pre.executeQuery();
-            if(rs.next()){
-                System.out.println("Success");
-                try{
-                    PreparedStatement pre1 = con.prepareStatement(sql1);
-                    pre1.setString(1, checkIn);
-                    pre1.setString(2, checkOut);
-                    pre1.setInt(3, penalty);
-                    pre1.setInt(4,id);
-                    pre1.executeUpdate();
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-            }
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
-    }
-    public int getIdBookedField(int idBooking){
-        String sql = "select id from tblbookedfield where idBooking = ?";
-        try{
-            PreparedStatement pre = con.prepareStatement(sql);
-            pre.setInt(1,idBooking);
-            ResultSet rs = pre.executeQuery();
-            if(rs.next()){
-                return rs.getInt("id");
-            }
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
-        return 0;
     }
 }

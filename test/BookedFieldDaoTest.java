@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import controller.dao.BookedFieldDAO;
+import controller.dao.BookingDAO;
 import java.util.ArrayList;
 import junit.framework.Assert;
 import model.Booking;
@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * @author lamit
  */
 public class BookedFieldDaoTest {
-    BookedFieldDAO bf = new BookedFieldDAO();
+    BookingDAO bf = new BookingDAO();
     public BookedFieldDaoTest() {
     }
     @Test

@@ -8,6 +8,7 @@ package view;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.BookedFieldSingle;
@@ -22,25 +23,28 @@ public class ConfirmCheckoutFrm extends javax.swing.JFrame {
      * Creates new form ConfirmCheckoutFrm
      */
     public ConfirmCheckoutFrm() {
+        
         initComponents();
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        txtPlayDate.setText(formatter.format(date));
         this.setLocationRelativeTo(null);
         setTitle("Confirm Check out");
-    }
-    public void setPlayDate(String today){
-        txtPlayDate.setText(today);
     }
     public void setListener(ActionListener al){
         btnConfirmCheckout.addActionListener(al);
     }
-    public BookedFieldSingle confirmBookedField(){
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        BookedFieldSingle bfSingle = new BookedFieldSingle();
-        try {
-            bfSingle = new BookedFieldSingle(formatter.parse(txtPlayDate.getText()),txtCheckin.getText(),txtCheckout.getText(),Integer.parseInt(txtPenalty.getText()));
-        } catch (ParseException ex) {
-            Logger.getLogger(ConfirmCheckoutFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return bfSingle;
+    public String getCheckin(){
+        return txtCheckin.getText();
+    }
+    public String getCheckout(){
+        return txtCheckout.getText();
+    }
+    public String getPenalty(){
+        return txtPenalty.getText();
+    }
+    public String getDateToday(){
+        return txtPlayDate.getText();
     }
     /**
      * This method is called from within the constructor to initialize the form.

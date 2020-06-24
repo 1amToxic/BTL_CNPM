@@ -20,8 +20,8 @@ public class UsedServiceDAO extends DAO{
 
     public UsedServiceDAO() {
     }
-    public ArrayList<UsedService> searchItem(int idBookedField,String key){
-        ArrayList<UsedService> list = new ArrayList<>();
+    public ArrayList<Service> searchService(String key){
+        ArrayList<Service> list = new ArrayList<>();
         String sql = "select * from tblservice where name like ?";
         try{
             PreparedStatement pre = con.prepareStatement(sql);
@@ -29,9 +29,8 @@ public class UsedServiceDAO extends DAO{
             ResultSet rs = pre.executeQuery();
             while(rs.next()){
                 Service s = new Service(rs.getInt("id"),rs.getString("name"),rs.getInt("price"),rs.getString("unity"),rs.getString("des"));
-                UsedService us = new UsedService(s);
-                list.add(us);
-//                System.out.println(s.toString());
+//                UsedService us = new UsedService(s);
+                list.add(s);
             }
         }catch(SQLException ex){
             ex.printStackTrace();

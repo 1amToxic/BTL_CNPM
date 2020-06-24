@@ -1,6 +1,6 @@
 
-import controller.LoginControl;
-import view.LoginFrm;
+import controller_new.LoginControl;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,8 +14,7 @@ import view.LoginFrm;
  */
 public class RunFile {
     public static void main(String[] args) {
-        LoginFrm loginFrm = new LoginFrm();
-        LoginControl loginControl = new LoginControl(loginFrm);
-        loginFrm.setVisible(true);
+        LoginControl loginControl = new LoginControl();
+        
     }
 }

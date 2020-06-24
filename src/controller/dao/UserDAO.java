@@ -28,10 +28,13 @@ public class UserDAO extends DAO{
             pre.setString(2, u.getPassword());
             ResultSet rs = pre.executeQuery();
             if(rs.next()){
-                u.setPos(rs.getString("position"));
-                u.setName(rs.getString("name"));
-                u.setId(rs.getInt("id"));
-                result = true;
+                if(rs.getString("position").equals("employee")){
+                    u.setPos(rs.getString("position"));
+                    u.setName(rs.getString("name"));
+                    u.setId(rs.getInt("id"));
+                    result = true;
+                }
+                else result = false;
             }
         }catch(SQLException ex){
             ex.printStackTrace();

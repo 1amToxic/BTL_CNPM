@@ -21,7 +21,7 @@ public class DAO {
 			String dbClass = "com.mysql.cj.jdbc.Driver";
 
 			try {
-                            System.out.println("Success");
+//                            System.out.println("Success");
 				Class.forName(dbClass);
 				con = DriverManager.getConnection (dbUrl, "root", "lam@2020");
 			}catch(Exception e) {
@@ -29,4 +29,6 @@ public class DAO {
 			}
 		}
 	} 
+   
+       
 }

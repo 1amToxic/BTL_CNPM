@@ -15,35 +15,36 @@ import java.util.Date;
  */
 public class BookedField implements Serializable{
     private int id;
-    private Date startmatch;
-    private Date endmatch;
+    private String startmatch;
+    private String endmatch;
     private Date starttime;
     private Date endtime;
     private int price;
     private int saleoff;
     private Field field;
     private String des;
+    private String nameField;
     private ArrayList<UsedService> listUsedService; 
 
+    public BookedField(int id, String startmatch, String endmatch, Date starttime, Date endtime, String name) {
+        this.id = id;
+        this.startmatch = startmatch;
+        this.endmatch = endmatch;
+        this.starttime = starttime;
+        this.endtime = endtime;
+        this.nameField = name;
+    }
+    public Object[] toObjects(){
+        return new Object[]{startmatch,endmatch,starttime,endtime,nameField};
+    }
     public BookedField() {
     }
-
-    public Date getStartmatch() {
-        return startmatch;
+    
+    public int getId(){
+        return id;
     }
-
-    public void setStartmatch(Date startmatch) {
-        this.startmatch = startmatch;
-    }
-
-    public Date getEndmatch() {
-        return endmatch;
-    }
-
-    public void setEndmatch(Date endmatch) {
-        this.endmatch = endmatch;
-    }
-
+    
+   
     public Date getStarttime() {
         return starttime;
     }
