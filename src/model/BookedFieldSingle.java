@@ -20,6 +20,7 @@ public class BookedFieldSingle implements Serializable{
     private String checkin;
     private String checkout;
     private int penalty;
+    private ArrayList<UsedService> list;
 
     public BookedFieldSingle() {
     }

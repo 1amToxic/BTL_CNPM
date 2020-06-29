@@ -19,6 +19,7 @@ public class ChooseBookedFieldFrm extends javax.swing.JFrame {
      */
     public ChooseBookedFieldFrm() {
         initComponents();
+        setTitle("Choose BookedField");
         setLocationRelativeTo(null);
         model = (DefaultTableModel) tblBooked.getModel();
     }

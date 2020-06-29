@@ -23,7 +23,7 @@ public class SearchUsedServiceFrm extends javax.swing.JFrame {
     public SearchUsedServiceFrm() {
         initComponents();
         this.setLocationRelativeTo(null);
-        setTitle("Search Used Item");
+        setTitle("Search Used Service");
         model = (DefaultTableModel) jTable3.getModel();
     }
     public void setListener(ActionListener al , MouseListener al1){

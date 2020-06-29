@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -24,7 +25,6 @@ public class BookedField implements Serializable{
     private Field field;
     private String des;
     private String nameField;
-    private ArrayList<UsedService> listUsedService; 
 
     public BookedField(int id, String startmatch, String endmatch, Date starttime, Date endtime, String name) {
         this.id = id;
@@ -34,8 +34,12 @@ public class BookedField implements Serializable{
         this.endtime = endtime;
         this.nameField = name;
     }
+    public String changeDatetoString(Date d){
+         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+         return formatter.format(d);
+    }
     public Object[] toObjects(){
-        return new Object[]{startmatch,endmatch,starttime,endtime,nameField};
+        return new Object[]{startmatch,endmatch,changeDatetoString(starttime),changeDatetoString(endtime),nameField};
     }
     public BookedField() {
     }

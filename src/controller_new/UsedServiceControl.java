@@ -5,6 +5,7 @@
  */
 package controller_new;
 
+import controller.dao.BookedFieldSingleDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -19,18 +20,25 @@ import view.ConfirmUsedServiceFrm;
  */
 public class UsedServiceControl {
     private ConfirmUsedServiceFrm usFrm;
+    private BookedFieldSingleDAO dao;
     private ArrayList<UsedService> list = new ArrayList<>();
     private int idBookedFieldS;
+    private int total = 0;
     public void setList(ArrayList<UsedService> list){
         this.list = list;
         list.forEach(
                 (it) -> usFrm.addRow(it.toObjects())
         );
+        list.forEach(
+            (it) -> total+=it.getTotal()
+        );
+        usFrm.setTotal(total);
     }
     public UsedServiceControl(int id){
         this.idBookedFieldS = id;
         usFrm  = new ConfirmUsedServiceFrm();
         usFrm.setVisible(true);
+        dao = new BookedFieldSingleDAO();
         usFrm.setListener(new ConfirmListener(),new UsedServiceListener());
     }
     class UsedServiceListener implements ActionListener{
@@ -46,6 +54,7 @@ public class UsedServiceControl {
         @Override
         public void actionPerformed(ActionEvent ae) {
             usFrm.showMessage("Saved!!!");
+            dao.updateTotalBookedFieldSingle(total, idBookedFieldS);
             usFrm.dispose();
             ManagerHomeControl managerHomeControl = new ManagerHomeControl();
         }

@@ -29,7 +29,6 @@ public class UsedServiceDAO extends DAO{
             ResultSet rs = pre.executeQuery();
             while(rs.next()){
                 Service s = new Service(rs.getInt("id"),rs.getString("name"),rs.getInt("price"),rs.getString("unity"),rs.getString("des"));
-//                UsedService us = new UsedService(s);
                 list.add(s);
             }
         }catch(SQLException ex){

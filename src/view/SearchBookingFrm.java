@@ -22,7 +22,7 @@ public class SearchBookingFrm extends javax.swing.JFrame {
     public SearchBookingFrm() {
         initComponents();
         this.setLocationRelativeTo(null);
-        setTitle("Search Booked Field");
+        setTitle("Search Booking");
         model = (DefaultTableModel) jTable1.getModel();
     }
     public void setListener(ActionListener al, MouseListener ml){

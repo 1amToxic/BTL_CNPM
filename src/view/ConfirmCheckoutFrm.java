@@ -29,7 +29,7 @@ public class ConfirmCheckoutFrm extends javax.swing.JFrame {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         txtPlayDate.setText(formatter.format(date));
         this.setLocationRelativeTo(null);
-        setTitle("Confirm Check out");
+        setTitle("Confirm Checkout");
     }
     public void setListener(ActionListener al){
         btnConfirmCheckout.addActionListener(al);

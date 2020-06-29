@@ -54,4 +54,15 @@ public class BookedFieldSingleDAO extends DAO{
         }   
         return result;
     }
+    public void updateTotalBookedFieldSingle(int total, int idBFs){
+        String sql = "update tblbookedfieldsingle as bfs set bfs.total = ? where bfs.id = ?";
+        try{
+            PreparedStatement pre = con.prepareStatement(sql);
+            pre.setInt(1, total);
+            pre.setInt(2, idBFs);
+            pre.executeUpdate();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
 }

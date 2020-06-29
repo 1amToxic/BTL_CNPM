@@ -22,7 +22,7 @@ public class ConfirmUsedServiceFrm extends javax.swing.JFrame {
     public ConfirmUsedServiceFrm() {
         initComponents();
         this.setLocationRelativeTo(null);
-        setTitle("Confirm Used Item");
+        setTitle("Confirm Used Service");
         model = (DefaultTableModel) jTable2.getModel();
         
     }
