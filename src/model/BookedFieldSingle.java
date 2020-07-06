@@ -25,6 +25,40 @@ public class BookedFieldSingle implements Serializable{
     public BookedFieldSingle() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getIdBookedField() {
+        return idBookedField;
+    }
+
+    public void setIdBookedField(int idBookedField) {
+        this.idBookedField = idBookedField;
+    }
+
+    public Date getPlayDate() {
+        return playDate;
+    }
+
+    public void setPlayDate(Date playDate) {
+        this.playDate = playDate;
+    }
+
+    public ArrayList<UsedService> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<UsedService> list) {
+        this.list = list;
+    }
+    
+    
+    
     public String getCheckin() {
         return checkin;
     }

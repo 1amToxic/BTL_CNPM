@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.dao;
+package model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -13,9 +13,9 @@ import model.UsedService;
  *
  * @author lamit
  */
-public class ConfirmedUsedServiceDAO extends DAO{
+public class UsedServiceDAO extends DAO{
 
-    public ConfirmedUsedServiceDAO() {
+    public UsedServiceDAO() {
     }
     public void updateUsedItems(UsedService us, int idBookedField){
         String sql = "insert tblusedservice(price,amount,saleoff,idBookedFieldS,idService) values(?,?,?,?,?)";

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.dao;
+package model.dao;
 
-import static controller.dao.DAO.con;
+import static model.dao.DAO.con;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,25 +17,6 @@ import java.util.Date;
  * @author lamit
  */
 public class BookedFieldSingleDAO extends DAO{
-    public void updateCheckout(int id,String checkIn, String checkOut, int penalty,String playDate){
-//        
-//        
-//        System.out.println(sdf.format(date)+"-"+id);
-        //tim kiem bookedfieldsingle phu hop
-//        String sql = "select * from tblbookedfieldsingle where idBookedField = ? and playDate = ?";
-        String sql  = "update tblbookedfieldsingle set checkin = ?, checkout = ?, penalty = ? where playDate = ? and idBookedField = ?";
-        try{
-            PreparedStatement pre = con.prepareStatement(sql);
-            pre.setInt(5,id);
-            pre.setString(4, playDate);
-            pre.setString(1, checkIn);
-            pre.setString(2, checkOut);
-            pre.setInt(3, penalty);
-            pre.executeUpdate();
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
-    }
     public int getIdBookedFieldSingle(int id){
         int result = 0;
         Date date = new Date();
@@ -54,12 +35,15 @@ public class BookedFieldSingleDAO extends DAO{
         }   
         return result;
     }
-    public void updateTotalBookedFieldSingle(int total, int idBFs){
-        String sql = "update tblbookedfieldsingle as bfs set bfs.total = ? where bfs.id = ?";
+    public void updateTotalBookedFieldSingle(int total, int idBFs,String checkin, String checkout,String penalty){
+        String sql = "update tblbookedfieldsingle set total = ?, checkin =?, checkout = ?, penalty = ? where id = ?";
         try{
             PreparedStatement pre = con.prepareStatement(sql);
             pre.setInt(1, total);
-            pre.setInt(2, idBFs);
+            pre.setInt(5, idBFs);
+            pre.setString(2, checkin);
+            pre.setString(3, checkout);
+            pre.setInt(4, Integer.parseInt(penalty));
             pre.executeUpdate();
         }catch(SQLException ex){
             ex.printStackTrace();

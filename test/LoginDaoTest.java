@@ -1,5 +1,5 @@
 
-import controller.dao.UserDAO;
+import model.dao.UserDAO;
 import model.User;
 import org.junit.Assert;
 import org.junit.Test;

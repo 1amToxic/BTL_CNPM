@@ -1,5 +1,6 @@
 
 import controller_new.LoginControl;
+import controller_new.RemoteModule;
 
 
 /*
@@ -15,6 +16,6 @@ import controller_new.LoginControl;
 public class RunFile {
     public static void main(String[] args) {
         LoginControl loginControl = new LoginControl();
-        
+        RemoteModule.init();
     }
 }

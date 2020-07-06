@@ -1,5 +1,5 @@
 
-import controller.dao.BookingDAO;
+import model.dao.BookingDAO;
 import java.util.ArrayList;
 import junit.framework.Assert;
 import model.Booking;

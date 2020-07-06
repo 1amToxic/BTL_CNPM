@@ -1,6 +1,6 @@
 
-import controller.dao.BookedFieldSingleDAO;
-import controller.dao.DAO;
+import model.dao.BookedFieldSingleDAO;
+import model.dao.DAO;
 import java.sql.Connection;
 import java.util.ArrayList;
 import model.BookedFieldSingle;

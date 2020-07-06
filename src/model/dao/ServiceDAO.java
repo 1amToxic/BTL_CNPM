@@ -3,31 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.dao;
+package model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Service;
 import model.UsedService;
 
 /**
  *
  * @author lamit
  */
-public class AllUsedServiceDAO extends DAO{
-    //use for update in total of bookedfield 
-    public AllUsedServiceDAO() {
+public class ServiceDAO extends DAO{
+
+    public ServiceDAO() {
     }
-    public ArrayList<UsedService> getAllUsedService(int idBookedField){
-        ArrayList<UsedService> list = new ArrayList<>();
-        String sql = "select * from tblusedservice where idBookedField = ?";
+    public ArrayList<Service> searchService(String key){
+        ArrayList<Service> list = new ArrayList<>();
+        String sql = "select * from tblservice where name like ?";
         try{
             PreparedStatement pre = con.prepareStatement(sql);
-            pre.setInt(1, idBookedField);
+            pre.setString(1,"%" + key + "%");
             ResultSet rs = pre.executeQuery();
             while(rs.next()){
-                list.add(new UsedService(rs.getInt("price"),rs.getInt("amount"),rs.getInt("saleoff")));
+                Service s = new Service(rs.getInt("id"),rs.getString("name"),rs.getInt("price"),rs.getString("unity"),rs.getString("des"));
+                list.add(s);
             }
         }catch(SQLException ex){
             ex.printStackTrace();

@@ -20,7 +20,7 @@ public class QuantityServiceFrm extends javax.swing.JFrame {
     public QuantityServiceFrm() {
         initComponents();
         this.setLocationRelativeTo(null);
-        setTitle("Fill Quantity");
+        setTitle("Fill Quantity Servicew");
     }
     public void setListener(ActionListener al){
         btnConfirmFill.addActionListener(al);
@@ -56,13 +56,13 @@ public class QuantityServiceFrm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("name");
+        jLabel1.setText("Name");
 
-        jLabel2.setText("price");
+        jLabel2.setText("Price");
 
-        jLabel3.setText("amount");
+        jLabel3.setText("Amount");
 
-        jLabel4.setText("saleoff");
+        jLabel4.setText("Saleoff");
 
         txtAmount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +105,7 @@ public class QuantityServiceFrm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(124, 124, 124)
                         .addComponent(btnConfirmFill)))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

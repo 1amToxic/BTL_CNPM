@@ -5,12 +5,12 @@
  */
 package controller_new;
 
-import controller.dao.ConfirmedUsedServiceDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import model.Service;
 import model.UsedService;
+import model.dao.UsedServiceDAO;
 import view.QuantityServiceFrm;
 
 /**
@@ -19,18 +19,17 @@ import view.QuantityServiceFrm;
  */
 public class QuantityServiceControl {
     private QuantityServiceFrm quantityFrm;
-    private ConfirmedUsedServiceDAO dao;
+    private UsedServiceDAO dao;
     private Service s;
     ArrayList<UsedService> list = new ArrayList<>();
     private int idBookedFieldS;
-    public QuantityServiceControl(Service s,int id,ArrayList<UsedService> list){
-        this.list = list;
-        this.s = s;
-        this.idBookedFieldS = id;
+    public QuantityServiceControl(){
+        this.s = RemoteModule.getService();
+        this.idBookedFieldS = RemoteModule.getBfs().getId();
         quantityFrm = new QuantityServiceFrm();
         quantityFrm.setVisible(true);
         quantityFrm.init(s.getName(), s.getPrice());
-        dao = new ConfirmedUsedServiceDAO();
+        dao = new UsedServiceDAO();
         quantityFrm.setListener(new ButtonListener());
     }
     class ButtonListener implements ActionListener{
@@ -41,12 +40,12 @@ public class QuantityServiceControl {
             us.setAmount(quantityFrm.getAmount());
             us.setSaleoff(quantityFrm.getSaleoff());
             us.setTotal(us.getAmount()*us.getPrice()-us.getSaleoff());
+            list = RemoteModule.getList();
             list.add(us);
-            dao.updateUsedItems(us, idBookedFieldS);
-            
+            RemoteModule.setList(list);
+            dao.updateUsedItems(us, RemoteModule.getBfs().getId());
             quantityFrm.dispose();
-            UsedServiceControl usControl = new UsedServiceControl(idBookedFieldS);
-            usControl.setList(list);
+            BookedFieldSingleControl usControl = new BookedFieldSingleControl();
         }
         
     }

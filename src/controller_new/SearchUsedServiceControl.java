@@ -5,7 +5,7 @@
  */
 package controller_new;
 
-import controller.dao.UsedServiceDAO;
+import model.dao.UsedServiceDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -13,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import model.Service;
 import model.UsedService;
+import model.dao.ServiceDAO;
 import view.SearchUsedServiceFrm;
 
 /**
@@ -21,16 +22,13 @@ import view.SearchUsedServiceFrm;
  */
 public class SearchUsedServiceControl {
     private SearchUsedServiceFrm searchUSFrm;
-    private UsedServiceDAO dao;
+    private ServiceDAO dao;
     private int idBookedFieldS;
     private ArrayList<Service> list;
-    private ArrayList<UsedService> list1 = new ArrayList<>();
-    public SearchUsedServiceControl(int id,ArrayList<UsedService> list){
-        this.list1 = list;
-        this.idBookedFieldS = id;
+    public SearchUsedServiceControl(){
         searchUSFrm = new SearchUsedServiceFrm();
         searchUSFrm.setVisible(true);
-        dao = new UsedServiceDAO();
+        dao = new ServiceDAO();
         searchUSFrm.setListener(new ButtonSearchListener(), new TableListener());
     }
     class ButtonSearchListener implements ActionListener{
@@ -38,6 +36,7 @@ public class SearchUsedServiceControl {
         @Override
         public void actionPerformed(ActionEvent ae) {
             list = dao.searchService(searchUSFrm.getKeySearch());
+            searchUSFrm.clearTable();
             list.forEach(
                     (it) -> searchUSFrm.addRow(it.toObjects())
             );
@@ -49,8 +48,9 @@ public class SearchUsedServiceControl {
         @Override
         public void mouseClicked(MouseEvent me) {
             int index = searchUSFrm.getSelectedRow();
+            RemoteModule.setService(list.get(index));
             searchUSFrm.dispose();
-            QuantityServiceControl quantityControl = new QuantityServiceControl(list.get(index),idBookedFieldS,list1);
+            QuantityServiceControl quantityControl = new QuantityServiceControl();
         }
 
         @Override

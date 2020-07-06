@@ -24,11 +24,20 @@ public class SearchUsedServiceFrm extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setTitle("Search Used Service");
-        model = (DefaultTableModel) jTable3.getModel();
+        model = (DefaultTableModel) tblUsedServiceS.getModel();
     }
     public void setListener(ActionListener al , MouseListener al1){
         btnSearchItem.addActionListener(al);
-        jTable3.addMouseListener(al1);
+        tblUsedServiceS.addMouseListener(al1);
+    }
+     public void clearTable(){
+        int size = model.getRowCount();
+        if(size>0){
+            while(size>0){
+                model.removeRow(0);
+                size--;
+            }
+        }
     }
     public String getKeySearch(){
         return txtItemKey.getText();
@@ -37,7 +46,7 @@ public class SearchUsedServiceFrm extends javax.swing.JFrame {
         model.addRow(o);
     }
     public int getSelectedRow(){
-        return jTable3.getSelectedRow();
+        return tblUsedServiceS.getSelectedRow();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,26 +60,29 @@ public class SearchUsedServiceFrm extends javax.swing.JFrame {
         txtItemKey = new javax.swing.JTextField();
         btnSearchItem = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tblUsedServiceS = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnSearchItem.setText("Search");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsedServiceS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "name", "price", "unity", "des"
+                "Name", "Price", "Unity", "Des"
             }
         ));
-        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblUsedServiceS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable3MouseClicked(evt);
+                tblUsedServiceSMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable3);
+        jScrollPane1.setViewportView(tblUsedServiceS);
+
+        jLabel1.setText("Service's name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,15 +90,16 @@ public class SearchUsedServiceFrm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtItemKey, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(btnSearchItem)
-                        .addGap(37, 37, 37))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(txtItemKey, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSearchItem)
+                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,7 +107,8 @@ public class SearchUsedServiceFrm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtItemKey, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearchItem))
+                    .addComponent(btnSearchItem)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(47, Short.MAX_VALUE))
@@ -103,9 +117,9 @@ public class SearchUsedServiceFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+    private void tblUsedServiceSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsedServiceSMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable3MouseClicked
+    }//GEN-LAST:event_tblUsedServiceSMouseClicked
 
     /**
      * @param args the command line arguments
@@ -144,8 +158,9 @@ public class SearchUsedServiceFrm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearchItem;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable3;
+    private javax.swing.JTable tblUsedServiceS;
     private javax.swing.JTextField txtItemKey;
     // End of variables declaration//GEN-END:variables
 }

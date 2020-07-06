@@ -5,11 +5,12 @@
  */
 package controller_new;
 
-import controller.dao.BookedFieldDAO;
+import model.dao.BookedFieldDAO;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import model.BookedField;
+import model.Booking;
 import view.ChooseBookedFieldFrm;
 
 /**
@@ -19,15 +20,15 @@ import view.ChooseBookedFieldFrm;
 public class BookedFieldControl {
     private ChooseBookedFieldFrm bfFrm;
     private BookedFieldDAO dao;
-    private int idBooking;
+    private Booking booking;
     ArrayList<BookedField> list;
-    public BookedFieldControl(int id){
+    public BookedFieldControl(){
         bfFrm = new ChooseBookedFieldFrm();
+        booking = RemoteModule.getBooking();
         bfFrm.setVisible(true);
-        idBooking = id;
         dao = new BookedFieldDAO();
         list = new ArrayList<>();
-        list = dao.getListBookedField(id);
+        list = dao.getListBookedField(booking.getId());
         list.forEach(
                 (it) -> bfFrm.addRow(it.toObjects())
         );
@@ -38,8 +39,9 @@ public class BookedFieldControl {
         @Override
         public void mouseClicked(MouseEvent me) {
             int index = bfFrm.getSelectedRow();
+            RemoteModule.setBf(list.get(index));
             bfFrm.dispose();
-            ConfirmCheckoutControl checkoutControl = new ConfirmCheckoutControl(list.get(index).getId());
+            BookedFieldSingleControl bfsControl = new BookedFieldSingleControl();
         }
 
         @Override

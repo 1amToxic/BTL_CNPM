@@ -23,14 +23,17 @@ public class SearchBookingFrm extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setTitle("Search Booking");
-        model = (DefaultTableModel) jTable1.getModel();
+        model = (DefaultTableModel) tblBooking.getModel();
     }
     public void setListener(ActionListener al, MouseListener ml){
         btnSearchClient.addActionListener(al);
-        jTable1.addMouseListener(ml);
+        tblBooking.addMouseListener(ml);
     }   
+    public void clearTable(){
+        model.setRowCount(0);
+    }
     public int getRowSelected(){
-        return jTable1.getSelectedRow();
+        return tblBooking.getSelectedRow();
     }
     public String getKeySearch(){
         return txtKeySearch.getText();
@@ -50,13 +53,14 @@ public class SearchBookingFrm extends javax.swing.JFrame {
         txtKeySearch = new javax.swing.JTextField();
         btnSearchClient = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblBooking = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnSearchClient.setText("Search");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblBooking.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -64,12 +68,14 @@ public class SearchBookingFrm extends javax.swing.JFrame {
                 "id", "name", "bookedDate", "saleoff", "idcard", "telephone"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblBooking.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                tblBookingMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblBooking);
+
+        jLabel1.setText("Client's name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,15 +83,16 @@ public class SearchBookingFrm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(36, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtKeySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSearchClient)
-                        .addGap(44, 44, 44))))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtKeySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSearchClient)
+                .addGap(44, 44, 44))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +100,8 @@ public class SearchBookingFrm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtKeySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearchClient))
+                    .addComponent(btnSearchClient)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -102,10 +110,10 @@ public class SearchBookingFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void tblBookingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBookingMouseClicked
         // TODO add your handling code here:
-        jTable1.getSelectedRow();
-    }//GEN-LAST:event_jTable1MouseClicked
+        tblBooking.getSelectedRow();
+    }//GEN-LAST:event_tblBookingMouseClicked
 
     /**
      * @param args the command line arguments
@@ -144,8 +152,9 @@ public class SearchBookingFrm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearchClient;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblBooking;
     private javax.swing.JTextField txtKeySearch;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,5 @@
 
-import controller.dao.UsedServiceDAO;
+import model.dao.UsedServiceDAO;
 import java.util.ArrayList;
 import junit.framework.Assert;
 import model.Service;

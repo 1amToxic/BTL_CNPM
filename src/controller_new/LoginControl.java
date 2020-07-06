@@ -5,7 +5,7 @@
  */
 package controller_new;
 
-import controller.dao.UserDAO;
+import model.dao.UserDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.User;
@@ -30,12 +30,13 @@ public class LoginControl {
         public void actionPerformed(ActionEvent ae) {
             User user = loginFrm.getUser();
             if(dao.checkLogin(user)){
-                loginFrm.showMessage("Success");
+                loginFrm.showMessage("Login Successful");
                 loginFrm.dispose();
+                RemoteModule.setUser(user);
                 ManagerHomeControl managerControl = new ManagerHomeControl();
             }
             else{
-                loginFrm.showMessage("Failed");
+                loginFrm.showMessage("Login Failed");
             }
         }
         

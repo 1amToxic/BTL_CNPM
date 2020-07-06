@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package controller_new;
-import controller.dao.BookingDAO;
+import model.dao.BookingDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -35,7 +35,7 @@ public class SearchBookingControl {
         public void actionPerformed(ActionEvent ae) {
             String key = sBookingFrm.getKeySearch();
             list = dao.searchBooking(key);
-//            System.out.println(list.size());
+            sBookingFrm.clearTable();
             list.forEach(
                 (it) -> sBookingFrm.addRow(it.toObjects())
             );
@@ -48,7 +48,8 @@ public class SearchBookingControl {
         public void mouseClicked(MouseEvent me) {
             int index = sBookingFrm.getRowSelected();
             sBookingFrm.dispose();
-            BookedFieldControl bfControl = new BookedFieldControl(list.get(index).getId());
+            RemoteModule.setBooking(list.get(index));
+            BookedFieldControl bfControl = new BookedFieldControl();
         }
 
         @Override
